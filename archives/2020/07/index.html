@@ -33,7 +33,7 @@
 
 <title>
     
-    Archives: 2020/7 |
+    归档：2020/7 |
     
     Hexo
 </title>
@@ -81,7 +81,9 @@
         <div class="branding">
             <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
             
-            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            <h2>
+                前端菜鸟的咸鱼之旅
+            </h2>
             
         </div>
     </div>
@@ -102,17 +104,22 @@
                         
                         <li role="presentation" class="text-center">
                             <a href="/"><i class="fa "></i>
-                                Home</a>
+                                首页</a>
                         </li>
                         
                         <li role="presentation" class="text-center">
-                            <a href="/categories/前端/"><i class="fa "></i>
-                                前端</a>
+                            <a href="/categories/框架/"><i class="fa "></i>
+                                框架</a>
                         </li>
                         
                         <li role="presentation" class="text-center">
-                            <a href="/categories/后端/"><i class="fa "></i>
-                                后端</a>
+                            <a href="/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工程化/"><i class="fa "></i>
+                                工程化</a>
                         </li>
                         
                         <li role="presentation" class="text-center">
@@ -173,15 +180,15 @@
     
 <div class="widget">
     <h3 class="title">
-        Search
+        搜索
     </h3>
     <div id="search-form">
         <div id="result-mask" class="hide"></div>
         <div class="search-area">
             
-            <input id="search-key" type="search" autocomplete="off" placeholder="Search What？">
+            <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢？">
             <button type="button" class="search-form-submit" id="search-local">
-                localSearch</button>
+                站内搜索</button>
             
             
         </div>
@@ -205,7 +212,7 @@
     
 <div class="widget">
     <h3 class="title">
-        Notification
+        网站公告
     </h3>
     <div class="notification">
         <p>
@@ -220,15 +227,15 @@
     
 <div class="widget">
     <h3 class="title">
-        Social
+        py一下
     </h3>
     <div class="content social">
         
-        <a href="//github.com/shenliyang" rel="external nofollow" title="Github" target="_blank">
+        <a href="//github.com/zhl232" rel="external nofollow" title="Github" target="_blank">
             <i class="git fa fa-git"></i>
         </a>
         
-        <a href="mailto:snippet@91h5.cc" rel="external nofollow" title="邮箱" target="_blank">
+        <a href="mailto:66020423@qq.com" rel="external nofollow" title="邮箱" target="_blank">
             <i class="envelope-o fa fa-envelope-o"></i>
         </a>
         
@@ -238,10 +245,6 @@
         
         <a href="/" rel="external nofollow" title="微信" target="_blank">
             <i class="weixin fa fa-weixin"></i>
-        </a>
-        
-        <a href="/" rel="external nofollow" title="QQ群" target="_blank">
-            <i class="users fa fa-users"></i>
         </a>
         
         <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
@@ -257,27 +260,13 @@
     
 <div class="widget">
     <h3 class="title">
-        Archives
+        归档
     </h3>
     <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/"><i class="fa" aria-hidden="true">2020年07月</i></a><span class="archive-list-count">1</span></li></ul>
 </div>
 
     
     
-    
-    
-<div class="widget">
-    <h3 class="title">
-        Friends
-    </h3>
-    <div class="content friends-link">
-        
-        <a href="https://hexo.io/zh-cn/" class="fa" target="_blank">
-            Hexo官网</a>
-        
-    </div>
-</div>
-
     
 </aside>
 
@@ -300,18 +289,28 @@
             <div class="col-sm-12">
                 <div class="busuanzi">
     
+    访问量:
+    <strong id="busuanzi_value_site_pv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    &nbsp; | &nbsp;
+    访客数:
+    <strong id="busuanzi_value_site_uv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    
 </div>
             </div>
             <div class="col-sm-12">
                 <span>Copyright &copy;
-                    2017
+                    2020
                     
                 </span> |
                 <span>
                     Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
                 </span> |
                 <span>
-                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                    Author by <a href="//github.com/zhl232" class="copyright-links" target="_blank" rel="nofollow">Arron</a>
                 </span>
             </div>
         </div>
@@ -321,6 +320,30 @@
 <script src="/js/search.js?rev=@@hash"></script>
 
 
+<script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <script src="/js/app.js?rev=@@hash"></script>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/haru01.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>

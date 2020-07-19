@@ -81,7 +81,9 @@
         <div class="branding">
             <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
             
-            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            <h2>
+                前端菜鸟的咸鱼之旅
+            </h2>
             
         </div>
     </div>
@@ -102,17 +104,22 @@
                         
                         <li role="presentation" class="text-center">
                             <a href="/"><i class="fa "></i>
-                                Home</a>
+                                首页</a>
                         </li>
                         
                         <li role="presentation" class="text-center">
-                            <a href="/categories/前端/"><i class="fa "></i>
-                                前端</a>
+                            <a href="/categories/框架/"><i class="fa "></i>
+                                框架</a>
                         </li>
                         
                         <li role="presentation" class="text-center">
-                            <a href="/categories/后端/"><i class="fa "></i>
-                                后端</a>
+                            <a href="/categories/算法/"><i class="fa "></i>
+                                算法</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工程化/"><i class="fa "></i>
+                                工程化</a>
                         </li>
                         
                         <li role="presentation" class="text-center">
@@ -166,6 +173,11 @@
             2020/07/19</span>
     </span>
     
+    <span class="fa-wrap">
+        <i class="fa fa-eye"></i>
+        <span id="busuanzi_value_page_pv"></span>
+    </span>
+    
     
 </div>
         
@@ -205,27 +217,18 @@
 
 <div id="comments">
     
-
-<div id="vcomments" class="valine"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="/assets/valine.min.js"></script>
-<script>
-new Valine({
-    av: AV,
-    el: '#vcomments',
-    appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
-    appKey: 'erIpQac4azoCmgfBB7Dl9maa',
-    placeholder: '说点什么吧',
-    notify: false,
-    verify: true,
-    avatar: 'mm',
-    meta: 'nick,mail'.split(','),
-    pageSize: '10',
-    path: window.location.pathname,
-    lang: ''.toLowerCase()
-})
-</script>
-
+<div id="lv-container" data-id="city" data-uid="MTAyMC81MTA3MS8yNzU1Mw">
+    <script type="text/javascript">
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+    </script>
+</div>
 
 </div>
 
@@ -234,7 +237,7 @@ new Valine({
                     <aside id="article-toc" role="navigation" class="col-md-4">
     <div class="widget">
         <h3 class="title">
-            Table of Contents
+            文章目录
         </h3>
         
         <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
@@ -260,18 +263,28 @@ new Valine({
             <div class="col-sm-12">
                 <div class="busuanzi">
     
+    访问量:
+    <strong id="busuanzi_value_site_pv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    &nbsp; | &nbsp;
+    访客数:
+    <strong id="busuanzi_value_site_uv">
+        <i class="fa fa-spinner fa-spin"></i>
+    </strong>
+    
 </div>
             </div>
             <div class="col-sm-12">
                 <span>Copyright &copy;
-                    2017
+                    2020
                     
                 </span> |
                 <span>
                     Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
                 </span> |
                 <span>
-                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                    Author by <a href="//github.com/zhl232" class="copyright-links" target="_blank" rel="nofollow">Arron</a>
                 </span>
             </div>
         </div>
@@ -279,6 +292,30 @@ new Valine({
 </div>
 
 
+<script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+<script>
+var tagOption = {
+    textColour: '#444', // 字体颜色
+    outlineMethod: 'block', // 选中模式
+    outlineColour: '#FFDAB9', // 选中模式的颜色
+    interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+    textHeight: 13,
+    outlineRadius: 3,
+    freezeActive: true || '', // 选中的标签是否继续滚动
+    frontSelect: true || '', // 不选标签云后部的标签
+    initial: [0.1, -0.1],
+    depth: 0.5,
+    decel: 0.95,
+    maxSpeed: 0.03,
+    reverse: true || '', // 是否反向触发
+    fadeIn: 500, // 进入动画时间
+    wheelZoom: false || '' // 是否启用鼠标滚轮
+}
+TagCanvas.Start('tag-cloud-3d', '', tagOption);
+</script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <script src="/js/app.js?rev=@@hash"></script>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/haru01.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
