@@ -22,7 +22,8 @@
 <meta name="keywords" content="leetcode,简单,哈希表">
 
 
-<meta name="description" content>
+<meta name="description" content="
+题目描述一个网站域名，如”discuss.leetcode.com”，包含了多个子域名。作为顶级域名，常用的有”com”，下一级则有”leetcode.com”，最低的一级为”discuss....">
 
 
 <meta name="robots" content="all">
@@ -33,7 +34,7 @@
 
 <title>
     
-    811.子域名访问计数 |
+    leetcode.811.子域名访问计数 |
     
     Hexo
 </title>
@@ -145,9 +146,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="811.子域名访问计数">
+        <h1 id="leetcode.811.子域名访问计数">
             
-            811.子域名访问计数
+            leetcode.811.子域名访问计数
             
         </h1>
         <div class="post-meta">
@@ -187,7 +188,32 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <!--
+ * @File: 
+ * @Author: 张宏亮 - zhl@xiaoniren.cn
+ * @Date: 2019-08-09 23:03:47
+ * @LastEditors: 张宏亮<zhl@xiaoniren.cn>
+ * @LastEditTime: 2019-08-10 00:36:23
+ * @Description: file content
+ * @Versions: 1.0.0
+ -->
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>一个网站域名，如”discuss.leetcode.com”，包含了多个子域名。作为顶级域名，常用的有”com”，下一级则有”leetcode.com”，最低的一级为”discuss.leetcode.com”。当我们访问域名”discuss.leetcode.com”时，也同时访问了其父域名”leetcode.com”以及顶级域名 “com”。</p>
+<p>给定一个带访问次数和域名的组合，要求分别计算每个域名被访问的次数。其格式为访问次数+空格+地址，例如：”9001 discuss.leetcode.com”。</p>
+<p>接下来会给出一组访问次数和域名组合的列表cpdomains 。要求解析出所有域名的访问次数，输出格式和输入格式相同，不限定先后顺序。</p>
+<p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: </span><br><span class="line">[&quot;9001 discuss.leetcode.com&quot;]</span><br><span class="line">输出: </span><br><span class="line">[&quot;9001 discuss.leetcode.com&quot;, &quot;9001 leetcode.com&quot;, &quot;9001 com&quot;]</span><br></pre></td></tr></table></figure></p>
+<p>说明:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例子中仅包含一个网站域名：&quot;discuss.leetcode.com&quot;。按照前文假设，子域名&quot;leetcode.com&quot;和&quot;com&quot;都会被访问，所以它们都被访问了9001次。</span><br></pre></td></tr></table></figure></p>
+<p>示例 2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: </span><br><span class="line">[&quot;900 google.mail.com&quot;, &quot;50 yahoo.com&quot;, &quot;1 intel.mail.com&quot;, &quot;5 wiki.org&quot;]</span><br><span class="line">输出: </span><br><span class="line">[&quot;901 mail.com&quot;,&quot;50 yahoo.com&quot;,&quot;900 google.mail.com&quot;,&quot;5 wiki.org&quot;,&quot;5 org&quot;,&quot;1 intel.mail.com&quot;,&quot;951 com&quot;]</span><br></pre></td></tr></table></figure></p>
+<p>说明:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">按照假设，会访问&quot;google.mail.com&quot; 900次，&quot;yahoo.com&quot; 50次，&quot;intel.mail.com&quot; 1次，&quot;wiki.org&quot; 5次。</span><br><span class="line">而对于父域名，会访问&quot;mail.com&quot; 900+1 = 901次，&quot;com&quot; 900 + 50 + 1 = 951次，和 &quot;org&quot; 5 次。</span><br></pre></td></tr></table></figure></p>
+<p>注意事项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cpdomains 的长度小于 100。</span><br><span class="line">每个域名的长度小于100。</span><br><span class="line">每个域名地址包含一个或两个&quot;.&quot;符号。</span><br><span class="line">输入中任意一个域名的访问次数都小于10000。</span><br></pre></td></tr></table></figure></p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/subdomain-visit-count" target="_blank" rel="noopener">https://leetcode-cn.com/problems/subdomain-visit-count</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>标签 <strong>哈希表</strong></p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
+<li>将 “900 google.mail.com” 拆成次数 num 900 和 url ‘google.mail.com’</li>
+<li>再把 url 按 ‘.’ 拆开，每级域名访问次数都是 num 900<br>[‘google.mail.com’, ‘mail.com’, ‘com’]</li>
+<li>遍历数组，把拆分的子域名存到哈希表里 key-&gt;域名 value-&gt;num，如果哈希表里有就把哈希表里的 num 和现在的 num 相加</li>
+<li>拼接返回值<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string[]&#125;</span> <span class="variable">cpdomains</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;string[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> subdomainVisits = <span class="function"><span class="keyword">function</span>(<span class="params">cpdomains</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">    <span class="keyword">let</span> res = []</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; cpdomains.length; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> [num, url] = cpdomains[i].split(<span class="string">' '</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(url.includes(<span class="string">'.'</span>))&#123;</span><br><span class="line">            <span class="keyword">if</span>(map.has(url))&#123;</span><br><span class="line">                map.set(url, (<span class="built_in">Number</span>(map.get(url)) + <span class="built_in">Number</span>(num)))</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                map.set(url, num)</span><br><span class="line">            &#125;            </span><br><span class="line">            url = url.slice(url.indexOf(<span class="string">'.'</span>) + <span class="number">1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(map.has(url))&#123;</span><br><span class="line">            map.set(url, (<span class="built_in">Number</span>(map.get(url)) + <span class="built_in">Number</span>(num)))</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            map.set(url, num)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    map.forEach(<span class="function">(<span class="params">value, key</span>) =&gt;</span> &#123;</span><br><span class="line">        res.push(<span class="string">`<span class="subst">$&#123;value&#125;</span> <span class="subst">$&#123;key&#125;</span>`</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
     </div>
     
     <div class="post-footer">
@@ -205,17 +231,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2020/07/19/leetcode-832-翻转图像/" class="pre-post btn btn-default" title='832.翻转图像'>
+    <a href="/2020/07/19/leetcode-832-翻转图像/" class="pre-post btn btn-default" title='leetcode.832.翻转图像'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            832.翻转图像</span>
+            leetcode.832.翻转图像</span>
     </a>
     
     
-    <a href="/2020/07/19/leetcode-771-宝石与石头/" class="next-post btn btn-default" title='771.宝石与石头'>
+    <a href="/2020/07/19/leetcode-771-宝石与石头/" class="next-post btn btn-default" title='leetcode.771.宝石与石头'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            771.宝石与石头</span><i class="fa fa-angle-right fa-fw"></i>
+            leetcode.771.宝石与石头</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -245,7 +271,7 @@
             文章目录
         </h3>
         
-        <p>暂无目录</p>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路"><span class="toc-text">解题思路</span></a></li></ol>
         
     </div>
 </aside>

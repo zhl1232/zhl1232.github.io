@@ -22,7 +22,9 @@
 <meta name="keywords" content="leetcode,数组,双指针,简单,二分查找">
 
 
-<meta name="description" content>
+<meta name="description" content="题目描述给定一个已按照升序排列 的有序数组，找到两个数使得它们相加之和等于目标数。
+函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2。
+说明:...">
 
 
 <meta name="robots" content="all">
@@ -33,7 +35,7 @@
 
 <title>
     
-    167.两数之和II-输入有序数组 |
+    leetcode.167.两数之和II-输入有序数组 |
     
     Hexo
 </title>
@@ -145,9 +147,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="167.两数之和II-输入有序数组">
+        <h1 id="leetcode.167.两数之和II-输入有序数组">
             
-            167.两数之和II-输入有序数组
+            leetcode.167.两数之和II-输入有序数组
             
         </h1>
         <div class="post-meta">
@@ -187,7 +189,28 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个已按照升序排列 的有序数组，找到两个数使得它们相加之和等于目标数。</p>
+<p>函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2。</p>
+<p>说明:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">返回的下标值（index1 和 index2）不是从零开始的。</span><br><span class="line">你可以假设每个输入只对应唯一的答案，而且你不可以重复使用相同的元素。</span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: numbers = [2, 7, 11, 15], target = 9</span><br><span class="line">输出: [1,2]</span><br><span class="line">解释: 2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。</span><br></pre></td></tr></table></figure></p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted" target="_blank" rel="noopener">https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>标签 <strong>数组</strong> <strong>双指针</strong> <strong>二分查找</strong></p>
+<h3 id="解法一：双循环，暴力"><a href="#解法一：双循环，暴力" class="headerlink" title="解法一：双循环，暴力"></a>解法一：双循环，暴力</h3><p>时间复杂度：O(n^2)</p>
+<p>这个很简单，遍历每个元素x，并查找是否存在一个值与target - x 相等的目标元素。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">numbers</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">target</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> twoSum = <span class="function"><span class="keyword">function</span>(<span class="params">numbers, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res = []</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">let</span> i = <span class="number">0</span>; i &lt; numbers.length; i++ ) &#123;</span><br><span class="line">        <span class="keyword">for</span> ( <span class="keyword">let</span> j = i+<span class="number">1</span>; j &lt; numbers.length; j++ ) &#123;</span><br><span class="line">            <span class="keyword">if</span> ( numbers[ i ] + numbers[ j ] === target ) &#123;</span><br><span class="line">                i++, j++</span><br><span class="line">                res = [i,j]</span><br><span class="line">                <span class="keyword">return</span> res</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="解法二：hash表"><a href="#解法二：hash表" class="headerlink" title="解法二：hash表"></a>解法二：hash表</h3><p>时间复杂度：O(n)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x + y = target</span><br><span class="line">y = target - x</span><br><span class="line">x + (target - x) = target</span><br></pre></td></tr></table></figure></p>
+<p>套入题目的例子，遍历数组，数组遍历的当前值为numbers[i]，那么 y 应该是 target - numbers[i]。<br>所以，只要在遍历的时候确定target - numbers[i]在数组里有，返回对应下标。</p>
+<p>hash表方法有两次哈希表方法和一次哈希表方法。</p>
+<p>两次hash表方法，在第一次迭代中，我们将每个元素的值和它的索引添加到表中。然后，在第二次迭代中，我们将检查每个元素所对应的目标元素（target−numbers[i]）是否存在于表中。</p>
+<p>一次hash表方法，下面代码所示。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> twoSum = <span class="function"><span class="keyword">function</span>(<span class="params">numbers, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; numbers.length; i ++) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(map.has(target - numbers[i])) &#123;</span><br><span class="line">            <span class="keyword">return</span> [map.get(target - numbers[i]) + <span class="number">1</span>, i + <span class="number">1</span>]</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        map.set(numbers[i], i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="解法三：双向指针"><a href="#解法三：双向指针" class="headerlink" title="解法三：双向指针"></a>解法三：双向指针</h3><p>由于数组是有序的，只需要双指针即可。一个left指针，一个right指针， 如果 left + right 值大于 target 则 right左移动， 否则 left 右移。</p>
+<p>如果数组无序，需要先排序。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> twoSum = <span class="function"><span class="keyword">function</span>(<span class="params">numbers, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> right = numbers.length</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(left &lt; right) &#123;</span><br><span class="line">        <span class="keyword">if</span>(numbers[left] + numbers[right] === target) &#123;</span><br><span class="line">            <span class="keyword">return</span> [left + <span class="number">1</span>, right + <span class="number">1</span>]</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(numbers[left] + numbers[right] &lt; target) &#123;</span><br><span class="line">            left ++</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            right --</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="解法四：二分查找"><a href="#解法四：二分查找" class="headerlink" title="解法四：二分查找"></a>解法四：二分查找</h3><p>时间复杂度：O(n log n)</p>
+<ol>
+<li>x + y = target, y = target - x</li>
+<li>遍历 numbers , 利用二分查找找 target - numbers[i]</li>
+<li>注意题目要求，其中 index1 必须小于 index2，而且你不可以重复使用相同的元素。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">numbers</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">target</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">    <span class="keyword">const</span> NOT_FOUND = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">var</span> twoSum = <span class="function"><span class="keyword">function</span>(<span class="params">numbers, target</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; numbers.length; i++) &#123;</span><br><span class="line">            <span class="keyword">let</span> y = target - numbers[i]</span><br><span class="line">            <span class="keyword">let</span> res = binarySearch(numbers, y)</span><br><span class="line">            <span class="keyword">if</span>(res !== NOT_FOUND &amp;&amp; i !== res)&#123;</span><br><span class="line">               <span class="keyword">return</span> i &lt; res ? [i + <span class="number">1</span>, res + <span class="number">1</span>] : [res + <span class="number">1</span>, i + <span class="number">1</span>]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> binarySearch = <span class="function"><span class="keyword">function</span>(<span class="params">array, target</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> low = <span class="number">0</span></span><br><span class="line">        <span class="keyword">let</span> high = array.length - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">            <span class="keyword">let</span> mid = ~~((low + high) / <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">if</span> (array[mid] &lt; target) &#123;</span><br><span class="line">                low = mid + <span class="number">1</span></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (array[mid] &gt; target) &#123;</span><br><span class="line">                high = mid - <span class="number">1</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> NOT_FOUND</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
     </div>
     
     <div class="post-footer">
@@ -205,17 +228,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2020/07/19/leetcode-202-快乐数/" class="pre-post btn btn-default" title='202.快乐数'>
+    <a href="/2020/07/19/leetcode-202-快乐数/" class="pre-post btn btn-default" title='leetcode.202.快乐数'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            202.快乐数</span>
+            leetcode.202.快乐数</span>
     </a>
     
     
-    <a href="/2020/07/19/leetcode-155-最小栈/" class="next-post btn btn-default" title='155.最小栈'>
+    <a href="/2020/07/19/leetcode-155-最小栈/" class="next-post btn btn-default" title='leetcode.155.最小栈'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            155.最小栈</span><i class="fa fa-angle-right fa-fw"></i>
+            leetcode.155.最小栈</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -245,7 +268,7 @@
             文章目录
         </h3>
         
-        <p>暂无目录</p>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解法一：双循环，暴力"><span class="toc-text">解法一：双循环，暴力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解法二：hash表"><span class="toc-text">解法二：hash表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解法三：双向指针"><span class="toc-text">解法三：双向指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解法四：二分查找"><span class="toc-text">解法四：二分查找</span></a></li></ol>
         
     </div>
 </aside>

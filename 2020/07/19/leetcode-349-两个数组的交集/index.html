@@ -22,7 +22,10 @@
 <meta name="keywords" content="leetcode,双指针,简单,二分查找,哈希表,排序">
 
 
-<meta name="description" content>
+<meta name="description" content="
+题目描述给定两个数组，编写一个函数来计算它们的交集。
+示例 1:12输入: nums1 = [1,2,2,1], nums2 = [2,2]输出: [2]
+示例 2:12输入: nums1 =...">
 
 
 <meta name="robots" content="all">
@@ -33,7 +36,7 @@
 
 <title>
     
-    349.两个数组的交集 |
+    leetcode.349.两个数组的交集 |
     
     Hexo
 </title>
@@ -145,9 +148,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="349.两个数组的交集">
+        <h1 id="leetcode.349.两个数组的交集">
             
-            349.两个数组的交集
+            leetcode.349.两个数组的交集
             
         </h1>
         <div class="post-meta">
@@ -187,7 +190,27 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <!--
+ * @File: 
+ * @Author: 张宏亮 - zhl@xiaoniren.cn
+ * @Date: 2019-08-09 23:03:47
+ * @LastEditors: 张宏亮<zhl@xiaoniren.cn>
+ * @LastEditTime: 2019-08-09 23:57:06
+ * @Description: file content
+ * @Versions: 1.0.0
+ -->
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定两个数组，编写一个函数来计算它们的交集。</p>
+<p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: nums1 = [1,2,2,1], nums2 = [2,2]</span><br><span class="line">输出: [2]</span><br></pre></td></tr></table></figure></p>
+<p>示例 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: nums1 = [4,9,5], nums2 = [9,4,9,8,4]</span><br><span class="line">输出: [9,4]</span><br></pre></td></tr></table></figure></p>
+<p>说明:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输出结果中的每个元素一定是唯一的。</span><br><span class="line">我们可以不考虑输出结果的顺序。</span><br></pre></td></tr></table></figure></p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/intersection-of-two-arrays" target="_blank" rel="noopener">https://leetcode-cn.com/problems/intersection-of-two-arrays</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>标签 <strong>排序</strong> <strong>哈希表</strong> <strong>双指针</strong> <strong>二分查找</strong></p>
+<h3 id="解法一-哈希表"><a href="#解法一-哈希表" class="headerlink" title="解法一 哈希表"></a>解法一 哈希表</h3><p>时间复杂度：O(m+n)</p>
+<p>利用哈希集合值唯一的特性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums1</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums2</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> intersection = <span class="function"><span class="keyword">function</span>(<span class="params">nums1, nums2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> hash1 = <span class="keyword">new</span> <span class="built_in">Set</span>(nums1)</span><br><span class="line">    <span class="keyword">let</span> hash2 = <span class="keyword">new</span> <span class="built_in">Set</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums2.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(hash1.has(nums2[i]))&#123;</span><br><span class="line">            hash2.add(nums2[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> [...hash2]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="解法二-双指针，排序"><a href="#解法二-双指针，排序" class="headerlink" title="解法二 双指针，排序"></a>解法二 双指针，排序</h3><p>因为标签里有双指针和排序就尝试了下。</p>
+<p>执行时间会很长，排序后把数组先去重会好一点。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums1</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums2</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> intersection = <span class="function"><span class="keyword">function</span>(<span class="params">nums1, nums2</span>) </span>&#123;</span><br><span class="line">    nums1 = nums1.sort(<span class="function">(<span class="params">a,b</span>) =&gt;</span> a - b)</span><br><span class="line">    nums2 = nums2.sort(<span class="function">(<span class="params">a,b</span>) =&gt;</span> a - b)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> p1 = p2 = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> res = <span class="keyword">new</span> <span class="built_in">Set</span>()</span><br><span class="line">    <span class="keyword">while</span>(p1 &lt; nums1.length &amp;&amp; p2 &lt; nums2.length) &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums1[p1] &lt; nums2[p2]) &#123;</span><br><span class="line">            p1++</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(nums1[p1] == nums2[p2])&#123;</span><br><span class="line">            res.add(nums1[p1])</span><br><span class="line">            p1++</span><br><span class="line">            p2++</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            p2++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> [...res]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="解法三-数组api"><a href="#解法三-数组api" class="headerlink" title="解法三: 数组api"></a>解法三: 数组api</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums1</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums2</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> intersection = <span class="function"><span class="keyword">function</span>(<span class="params">nums1, nums2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [...new <span class="built_in">Set</span>(nums1.filter(<span class="function"><span class="params">v</span> =&gt;</span> nums2.includes(v)))]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
     </div>
     
     <div class="post-footer">
@@ -205,17 +228,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2020/07/19/leetcode-350-两个数组的交集II/" class="pre-post btn btn-default" title='350.两个数组的交集II'>
+    <a href="/2020/07/19/leetcode-350-两个数组的交集II/" class="pre-post btn btn-default" title='leetcode.350.两个数组的交集II'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            350.两个数组的交集II</span>
+            leetcode.350.两个数组的交集II</span>
     </a>
     
     
-    <a href="/2020/07/19/leetcode-345-反转字符串中的元音字母/" class="next-post btn btn-default" title='345.反转字符串中的元音字母'>
+    <a href="/2020/07/19/leetcode-345-反转字符串中的元音字母/" class="next-post btn btn-default" title='leetcode.345.反转字符串中的元音字母'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            345.反转字符串中的元音字母</span><i class="fa fa-angle-right fa-fw"></i>
+            leetcode.345.反转字符串中的元音字母</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -245,7 +268,7 @@
             文章目录
         </h3>
         
-        <p>暂无目录</p>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解法一-哈希表"><span class="toc-text">解法一 哈希表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解法二-双指针，排序"><span class="toc-text">解法二 双指针，排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解法三-数组api"><span class="toc-text">解法三: 数组api</span></a></li></ol>
         
     </div>
 </aside>

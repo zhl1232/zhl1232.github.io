@@ -22,7 +22,8 @@
 <meta name="keywords" content="leetcode,中等,哈希表,数学">
 
 
-<meta name="description" content>
+<meta name="description" content="
+题目描述TinyURL是一种URL简化服务， 比如：当你输入一个URL https://leetcode.com/problems/design-tinyurl 时，它将返回一个简化的URL ...">
 
 
 <meta name="robots" content="all">
@@ -33,7 +34,7 @@
 
 <title>
     
-    535.TinyURL的加密与解密 |
+    leetcode.535.TinyURL的加密与解密 |
     
     Hexo
 </title>
@@ -145,9 +146,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="535.TinyURL的加密与解密">
+        <h1 id="leetcode.535.TinyURL的加密与解密">
             
-            535.TinyURL的加密与解密
+            leetcode.535.TinyURL的加密与解密
             
         </h1>
         <div class="post-meta">
@@ -187,7 +188,38 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <!--
+ * @File: 
+ * @Author: 张宏亮 - zhl@xiaoniren.cn
+ * @Date: 2019-08-09 23:03:47
+ * @LastEditors: 张宏亮<zhl@xiaoniren.cn>
+ * @LastEditTime: 2019-08-10 15:57:50
+ * @Description: file content
+ * @Versions: 1.0.0
+ -->
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>TinyURL是一种URL简化服务， 比如：当你输入一个URL <a href="https://leetcode.com/problems/design-tinyurl" target="_blank" rel="noopener">https://leetcode.com/problems/design-tinyurl</a> 时，它将返回一个简化的URL <a href="http://tinyurl.com/4e9iAk" target="_blank" rel="noopener">http://tinyurl.com/4e9iAk</a>.</p>
+<p>要求：设计一个 TinyURL 的加密 encode 和解密 decode 的方法。你的加密和解密算法如何设计和运作是没有限制的，你只需要保证一个URL可以被加密成一个TinyURL，并且这个TinyURL可以用解密方法恢复成原本的URL。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/encode-and-decode-tinyurl" target="_blank" rel="noopener">https://leetcode-cn.com/problems/encode-and-decode-tinyurl</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>标签 <strong>哈希表</strong> <strong>数学</strong></p>
+<h3 id="短网址原理"><a href="#短网址原理" class="headerlink" title="短网址原理"></a>短网址原理</h3><p>当我们在浏览器里输入 <a href="http://tinyurl.com/4e9iAk" target="_blank" rel="noopener">http://tinyurl.com/4e9iAk</a> 时</p>
+<ol>
+<li>DNS首先解析获得 <a href="http://tinyurl.com" target="_blank" rel="noopener">http://tinyurl.com</a> 的 IP 地址</li>
+<li>当 DNS 获得 IP 地址以后（比如：74.125.225.72），会向这个地址发送 HTTP GET 请求，查询短码 4e9iAk</li>
+<li><a href="http://t.cn" target="_blank" rel="noopener">http://t.cn</a> 服务器会通过短码 4e9iAk 获取对应的长 URL</li>
+<li>请求通过 HTTP 301 转到对应的长 URL <a href="https://leetcode.com/problems/design-tinyurl" target="_blank" rel="noopener">https://leetcode.com/problems/design-tinyurl</a> 。<blockquote>
+<p>301 是永久重定向，302 是临时重定向。短地址一经生成就不会变化，所以用 301 是符合 http 语义的。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="短网址算法"><a href="#短网址算法" class="headerlink" title="短网址算法"></a>短网址算法</h3><p>这道题的标签是 哈希表，数学。哈希表不用说了，肯定得把短网址映射到长网址上。</p>
+<p>数学 网上比较流行的短网址算法有两种 自增序列算法、 摘要算法。</p>
+<p>这里我们用自增序列算法，比较好理解。</p>
+<p>设置 id 自增，一个 10进制 id 对应一个 62进制的数值，1对1，也就不会出现重复的情况。这个利用的就是低进制转化为高进制时，字符数会减少的特性。</p>
+<p>短址的长度一般设为 6 位，总共会有 64^6 ~= 687亿种组合，基本上不会重复。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Encodes a URL to a shortened URL.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">longUrl</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;string&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> hash = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line"><span class="keyword">var</span> encode = <span class="function"><span class="keyword">function</span>(<span class="params">longUrl</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> chars = <span class="string">'0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ-~'</span>.split(<span class="string">''</span>),</span><br><span class="line">        radix = chars.length,</span><br><span class="line">        qutient = <span class="number">10000000000</span>,   </span><br><span class="line">        arr = [];</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        mod = qutient % radix;</span><br><span class="line">        qutient = (qutient - mod) / radix;</span><br><span class="line">        arr.unshift(chars[mod]);</span><br><span class="line">    &#125; <span class="keyword">while</span> (qutient);</span><br><span class="line">    hash.set(arr.join(<span class="string">''</span>),longUrl)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'http://tinyurl.com/'</span> + arr.join(<span class="string">''</span>)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Decodes a shortened URL to its original URL.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">shortUrl</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;string&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> decode = <span class="function"><span class="keyword">function</span>(<span class="params">shortUrl</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// var chars = '0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ-~',</span></span><br><span class="line">    <span class="comment">//     radix = chars.length,</span></span><br><span class="line">    <span class="comment">//     number_code = String(number_code),</span></span><br><span class="line">    <span class="comment">//     len = number_code.length,</span></span><br><span class="line">    <span class="comment">//     i = 0,</span></span><br><span class="line">    <span class="comment">//     origin_number = 0;</span></span><br><span class="line">    <span class="comment">// while (i &lt; len) &#123;</span></span><br><span class="line">    <span class="comment">//     origin_number += Math.pow(radix, i++) * chars.indexOf(number_code.charAt(len - i) || 0);</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    shortUrl = shortUrl.replace(<span class="regexp">/http:\/\/tinyurl\.com\//</span>,<span class="string">''</span>)</span><br><span class="line">    <span class="keyword">return</span> hash.get(shortUrl)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your functions will be called as such:</span></span><br><span class="line"><span class="comment"> * decode(encode(url));</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<p>这种方法是设置一个 id ，然后对 id 进行编码，然后用编码后的 id 进行映射。</p>
+<p>另一种摘要算法，是直接对 longUrl 编码。</p>
+
     </div>
     
     <div class="post-footer">
@@ -205,17 +237,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2020/07/19/leetcode-599-两个列表的最小索引总和/" class="pre-post btn btn-default" title='599.两个列表的最小索引总和'>
+    <a href="/2020/07/19/leetcode-599-两个列表的最小索引总和/" class="pre-post btn btn-default" title='leetcode.599.两个列表的最小索引总和'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            599.两个列表的最小索引总和</span>
+            leetcode.599.两个列表的最小索引总和</span>
     </a>
     
     
-    <a href="/2020/07/19/leetcode-500-键盘行/" class="next-post btn btn-default" title='500.键盘行'>
+    <a href="/2020/07/19/leetcode-500-键盘行/" class="next-post btn btn-default" title='leetcode.500.键盘行'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            500.键盘行</span><i class="fa fa-angle-right fa-fw"></i>
+            leetcode.500.键盘行</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -245,7 +277,7 @@
             文章目录
         </h3>
         
-        <p>暂无目录</p>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#短网址原理"><span class="toc-text">短网址原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#短网址算法"><span class="toc-text">短网址算法</span></a></li></ol>
         
     </div>
 </aside>

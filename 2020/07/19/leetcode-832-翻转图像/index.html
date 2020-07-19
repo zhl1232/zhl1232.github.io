@@ -22,7 +22,8 @@
 <meta name="keywords" content="leetcode,数组,简单">
 
 
-<meta name="description" content>
+<meta name="description" content="题目描述给定一个二进制矩阵 A，我们想先水平翻转图像，然后反转图像并返回结果。
+水平翻转图片就是将图片的每一行都进行翻转，即逆序。例如，水平翻转 [1, 1, 0] 的结果是 [0, 1, 1]...">
 
 
 <meta name="robots" content="all">
@@ -33,7 +34,7 @@
 
 <title>
     
-    832.翻转图像 |
+    leetcode.832.翻转图像 |
     
     Hexo
 </title>
@@ -145,9 +146,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="832.翻转图像">
+        <h1 id="leetcode.832.翻转图像">
             
-            832.翻转图像
+            leetcode.832.翻转图像
             
         </h1>
         <div class="post-meta">
@@ -187,7 +188,28 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个二进制矩阵 A，我们想先水平翻转图像，然后反转图像并返回结果。</p>
+<p>水平翻转图片就是将图片的每一行都进行翻转，即逆序。例如，水平翻转 [1, 1, 0] 的结果是 [0, 1, 1]。</p>
+<p>反转图片的意思是图片中的 0 全部被 1 替换， 1 全部被 0 替换。例如，反转 [0, 1, 1] 的结果是 [1, 0, 0]。</p>
+<p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: [[1,1,0],[1,0,1],[0,0,0]]</span><br><span class="line">输出: [[1,0,0],[0,1,0],[1,1,1]]</span><br><span class="line">解释: 首先翻转每一行: [[0,1,1],[1,0,1],[0,0,0]]；</span><br><span class="line">     然后反转图片: [[1,0,0],[0,1,0],[1,1,1]]</span><br></pre></td></tr></table></figure></p>
+<p>示例 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: [[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]</span><br><span class="line">输出: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]</span><br><span class="line">解释: 首先翻转每一行: [[0,0,1,1],[1,0,0,1],[1,1,1,0],[0,1,0,1]]；</span><br><span class="line">     然后反转图片: [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]</span><br></pre></td></tr></table></figure></p>
+<p>说明:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 &lt;= A.length = A[0].length &lt;= 20</span><br><span class="line">0 &lt;= A[i][j] &lt;= 1</span><br></pre></td></tr></table></figure></p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/flipping-an-image" target="_blank" rel="noopener">https://leetcode-cn.com/problems/flipping-an-image</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>标签 <strong>数组</strong></p>
+<h3 id="方法一：数组API"><a href="#方法一：数组API" class="headerlink" title="方法一：数组API"></a>方法一：数组API</h3><p>没啥说的。。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[][]&#125;</span> <span class="variable">A</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[][]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> flipAndInvertImage = <span class="function"><span class="keyword">function</span>(<span class="params">A</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> A.map(<span class="function"><span class="params">item</span> =&gt;</span> item.reverse().map(<span class="function"><span class="params">item1</span> =&gt;</span> item1 === <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>))</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="方法二：对撞双指针"><a href="#方法二：对撞双指针" class="headerlink" title="方法二：对撞双指针"></a>方法二：对撞双指针</h3><p>按位异或：</p>
+<p>参与运算的两个值，如果两个相应位相同，则结果为0，否则为1。即：0^0=0， 1^0=1， 0^1=1， 1^1=0</p>
+<p>所以 (0 和 1) ^ 1 就会相当于反转，1 会变成 0， 0 会变成 1。当然用三元运算符也行。</p>
+<p>利用双指针，把右边的值反转放到左边，把左边的值反转放到右边。</p>
+<p>就相当于翻转并反转了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[][]&#125;</span> <span class="variable">A</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[][]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> flipAndInvertImage = <span class="function"><span class="keyword">function</span>(<span class="params">A</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; A.length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> left = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> right = A.length - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">      <span class="keyword">let</span> temp = A[i][left]</span><br><span class="line">      A[i][left] = A[i][right] ^ <span class="number">1</span></span><br><span class="line">      A[i][right] = temp ^ <span class="number">1</span></span><br><span class="line">      <span class="comment">// A[i][left] = A[i][right] === 1 ? 0 : 1</span></span><br><span class="line">      <span class="comment">// A[i][right] = temp === 1 ? 0 : 1</span></span><br><span class="line">      left++</span><br><span class="line">      right--</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> A</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方法三：规律"><a href="#方法三：规律" class="headerlink" title="方法三：规律"></a>方法三：规律</h3><p>比如 [1,1,0]，水平翻转后是[0,1,1]，再反转就会变为 [1,0,0]。</p>
+<p>比如 [1,1,0,0]，水平翻转后是[0,0,1,1]，再反转就会变为 [1,1,0,0].</p>
+<p>会发现，两边的值只要不相等，水平翻转后再反转就会和之前一样。奇数长度中间值没法比较的一会再说。</p>
+<p>再看两边值相等的，最后结果就是原来的值取反。</p>
+<p>最后再看奇数长度中间值，发现都是取反。</p>
+<p>所以只要判断对撞指针两边的值是否相等，如果相等，值不变。如果不相等值取反。如果是奇数，那把中间值也取反。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[][]&#125;</span> <span class="variable">A</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[][]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> flipAndInvertImage = <span class="function"><span class="keyword">function</span>(<span class="params">A</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> n = A.length</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> left = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> right = n - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">      <span class="keyword">if</span> (A[i][left] === A[i][right]) &#123;</span><br><span class="line">        A[i][left] = A[i][left] ^ <span class="number">1</span></span><br><span class="line">        A[i][right] = A[i][right] ^ <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">      left++</span><br><span class="line">      right--</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (n % <span class="number">2</span>) &#123;</span><br><span class="line">      A[i][~~(n / <span class="number">2</span>)] = A[i][~~(n / <span class="number">2</span>)] ^ <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> A</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
     
     <div class="post-footer">
@@ -205,17 +227,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2020/07/19/leetcode-961-重复N次的元素/" class="pre-post btn btn-default" title='leetcode-961-重复N次的元素'>
+    <a href="/2020/07/19/leetcode-961-重复N次的元素/" class="pre-post btn btn-default" title='leetcode.961-重复N次的元素'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            leetcode-961-重复N次的元素</span>
+            leetcode.961-重复N次的元素</span>
     </a>
     
     
-    <a href="/2020/07/19/leetcode-811-子域名访问计数/" class="next-post btn btn-default" title='811.子域名访问计数'>
+    <a href="/2020/07/19/leetcode-811-子域名访问计数/" class="next-post btn btn-default" title='leetcode.811.子域名访问计数'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            811.子域名访问计数</span><i class="fa fa-angle-right fa-fw"></i>
+            leetcode.811.子域名访问计数</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -245,7 +267,7 @@
             文章目录
         </h3>
         
-        <p>暂无目录</p>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法一：数组API"><span class="toc-text">方法一：数组API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法二：对撞双指针"><span class="toc-text">方法二：对撞双指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法三：规律"><span class="toc-text">方法三：规律</span></a></li></ol>
         
     </div>
 </aside>

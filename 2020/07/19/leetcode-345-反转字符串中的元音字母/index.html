@@ -22,7 +22,9 @@
 <meta name="keywords" content="leetcode,字符串,双指针,简单">
 
 
-<meta name="description" content>
+<meta name="description" content="题目描述给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
+说明：本题中，我们将空字符串定义为有效的回文串。
+示例 1:12输入: &quot;A man, a p...">
 
 
 <meta name="robots" content="all">
@@ -33,7 +35,7 @@
 
 <title>
     
-    345.反转字符串中的元音字母 |
+    leetcode.345.反转字符串中的元音字母 |
     
     Hexo
 </title>
@@ -145,9 +147,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="345.反转字符串中的元音字母">
+        <h1 id="leetcode.345.反转字符串中的元音字母">
             
-            345.反转字符串中的元音字母
+            leetcode.345.反转字符串中的元音字母
             
         </h1>
         <div class="post-meta">
@@ -187,7 +189,18 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。</p>
+<p>说明：本题中，我们将空字符串定义为有效的回文串。</p>
+<p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;A man, a plan, a canal: Panama&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure></p>
+<p>示例 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;race a car&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure></p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/valid-palindrome" target="_blank" rel="noopener">https://leetcode-cn.com/problems/valid-palindrome</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>标签 <strong>双指针</strong> <strong>字符串</strong></p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
+<li>用对撞指针，查看两指针是否为 ieaou </li>
+<li>如两指针都是，交换，两指针都向中间移动</li>
+<li>如果其中一指针不是，该指针向中间移动，直到 2 或者循环条件结束 </li>
+</ol>
+<h3 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">s</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;string&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> reverseVowels = <span class="function"><span class="keyword">function</span>(<span class="params">s</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> reg = <span class="regexp">/[ieaou]/i</span></span><br><span class="line">    <span class="keyword">let</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> right = s.length - <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 为了交换方便，也可以用其他方法交换</span></span><br><span class="line">    <span class="keyword">let</span> arr = s.split(<span class="string">''</span>)</span><br><span class="line">    <span class="keyword">while</span>(left &lt; right) &#123;</span><br><span class="line">        <span class="keyword">if</span>(reg.test(arr[left]) &amp;&amp; reg.test(arr[right])) &#123;</span><br><span class="line">            [arr[left], arr[right]] = [arr[right], arr[left]]</span><br><span class="line">            left++</span><br><span class="line">            right--</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(!reg.test(arr[left])) &#123;</span><br><span class="line">            left++</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(!reg.test(arr[right])) &#123;</span><br><span class="line">           right-- </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> arr.join(<span class="string">''</span>)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
     </div>
     
     <div class="post-footer">
@@ -205,17 +218,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2020/07/19/leetcode-349-两个数组的交集/" class="pre-post btn btn-default" title='349.两个数组的交集'>
+    <a href="/2020/07/19/leetcode-349-两个数组的交集/" class="pre-post btn btn-default" title='leetcode.349.两个数组的交集'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            349.两个数组的交集</span>
+            leetcode.349.两个数组的交集</span>
     </a>
     
     
-    <a href="/2020/07/19/leetcode-344-反转字符串/" class="next-post btn btn-default" title='344.反转字符串'>
+    <a href="/2020/07/19/leetcode-344-反转字符串/" class="next-post btn btn-default" title='leetcode.344.反转字符串'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            344.反转字符串</span><i class="fa fa-angle-right fa-fw"></i>
+            leetcode.344.反转字符串</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -245,7 +258,7 @@
             文章目录
         </h3>
         
-        <p>暂无目录</p>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题方法"><span class="toc-text">解题方法</span></a></li></ol>
         
     </div>
 </aside>

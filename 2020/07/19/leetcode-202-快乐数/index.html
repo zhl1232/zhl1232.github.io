@@ -22,7 +22,8 @@
 <meta name="keywords" content="leetcode,简单,哈希表,数学">
 
 
-<meta name="description" content>
+<meta name="description" content="题目描述编写一个算法来判断一个数是不是“快乐数”。
+一个“快乐数”定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，然后重复这个过程直到这个数变为 1，也可能是无限循环但始终...">
 
 
 <meta name="robots" content="all">
@@ -33,7 +34,7 @@
 
 <title>
     
-    202.快乐数 |
+    leetcode.202.快乐数 |
     
     Hexo
 </title>
@@ -145,9 +146,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="202.快乐数">
+        <h1 id="leetcode.202.快乐数">
             
-            202.快乐数
+            leetcode.202.快乐数
             
         </h1>
         <div class="post-meta">
@@ -187,7 +188,34 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>编写一个算法来判断一个数是不是“快乐数”。</p>
+<p>一个“快乐数”定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，然后重复这个过程直到这个数变为 1，也可能是无限循环但始终变不到 1。如果可以变为 1，那么这个数就是快乐数。</p>
+<p>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入: 19</span><br><span class="line">输出: true</span><br><span class="line">解释: </span><br><span class="line">12 + 92 = 82</span><br><span class="line">82 + 22 = 68</span><br><span class="line">62 + 82 = 100</span><br><span class="line">12 + 02 + 02 = 1</span><br></pre></td></tr></table></figure></p>
+<p>标签 <strong>哈希表</strong> <strong>数学</strong></p>
+<p><a href="https://leetcode-cn.com/problems/happy-number/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/happy-number/</a></p>
+<h3 id="一、题目给出的计算方式"><a href="#一、题目给出的计算方式" class="headerlink" title="一、题目给出的计算方式"></a>一、题目给出的计算方式</h3><p>获取每个位置上的数字的平方和，然后重复这个过程</p>
+<h3 id="二、依据计算方式，得到结果范围"><a href="#二、依据计算方式，得到结果范围" class="headerlink" title="二、依据计算方式，得到结果范围"></a>二、依据计算方式，得到结果范围</h3><ul>
+<li>每个位置上的数字范围：0~9</li>
+<li>于1位数，平方和范围：1~81</li>
+<li>对于2位数，平方和范围：1~162</li>
+<li>对于3位数，平方和范围：1~243</li>
+<li>整数最大位数是10位数(最大的整数2147483647)，那么平方和范围：1~810</li>
+</ul>
+<p>可以看出，平方和总会回归到3位数，并进入 1~243 这个数字范围内</p>
+<h3 id="三、思路1：依据“快乐集合”和“不快乐集合”来判断"><a href="#三、思路1：依据“快乐集合”和“不快乐集合”来判断" class="headerlink" title="三、思路1：依据“快乐集合”和“不快乐集合”来判断"></a>三、思路1：依据“快乐集合”和“不快乐集合”来判断</h3><ol>
+<li>既然所有整数，最终都会落到 1~243这个范围</li>
+<li>那么这些数字，肯定有的可以得到1，有的得不到，所以这些数字就可以分成两个集合，快乐集合 和 不快乐集合</li>
+<li>所以，如果一个整数，计算结果落在其中的一个集合，那么这个整数就是“快乐”或者“不快乐”的</li>
+</ol>
+<h3 id="四、思路2：依据是否循环来判断"><a href="#四、思路2：依据是否循环来判断" class="headerlink" title="四、思路2：依据是否循环来判断"></a>四、思路2：依据是否循环来判断</h3><ol>
+<li>既然平方和结果范围是有限的，即1~243，那么只要可以不断计算下去，就必然是循环的</li>
+<li>程序可以检测到这种循环，进而判断整数非快乐数</li>
+</ol>
+<h3 id="五、时间复杂度分析"><a href="#五、时间复杂度分析" class="headerlink" title="五、时间复杂度分析"></a>五、时间复杂度分析</h3><ul>
+<li>既然所有整数的平方和都会落在 1~243 这个范围内，那么就说明这个循环判定结果一定是有循环次数上限的，所以它是一个常数复杂度，即O(1)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">n</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> isHappy = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span> || n == <span class="number">7</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">10</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(n &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> num = n%<span class="number">10</span>;</span><br><span class="line">        n = <span class="built_in">Math</span>.floor(n/<span class="number">10</span>);</span><br><span class="line">        sum += num*num;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> isHappy(sum);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
     </div>
     
     <div class="post-footer">
@@ -205,17 +233,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2020/07/19/leetcode-205-同构字符串/" class="pre-post btn btn-default" title='205.同构字符串'>
+    <a href="/2020/07/19/leetcode-205-同构字符串/" class="pre-post btn btn-default" title='leetcode.205.同构字符串'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            205.同构字符串</span>
+            leetcode.205.同构字符串</span>
     </a>
     
     
-    <a href="/2020/07/19/leetcode-167-两数之和II-输入有序数组/" class="next-post btn btn-default" title='167.两数之和II-输入有序数组'>
+    <a href="/2020/07/19/leetcode-167-两数之和II-输入有序数组/" class="next-post btn btn-default" title='leetcode.167.两数之和II-输入有序数组'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            167.两数之和II-输入有序数组</span><i class="fa fa-angle-right fa-fw"></i>
+            leetcode.167.两数之和II-输入有序数组</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -245,7 +273,7 @@
             文章目录
         </h3>
         
-        <p>暂无目录</p>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一、题目给出的计算方式"><span class="toc-text">一、题目给出的计算方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、依据计算方式，得到结果范围"><span class="toc-text">二、依据计算方式，得到结果范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、思路1：依据“快乐集合”和“不快乐集合”来判断"><span class="toc-text">三、思路1：依据“快乐集合”和“不快乐集合”来判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、思路2：依据是否循环来判断"><span class="toc-text">四、思路2：依据是否循环来判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、时间复杂度分析"><span class="toc-text">五、时间复杂度分析</span></a></li></ol>
         
     </div>
 </aside>

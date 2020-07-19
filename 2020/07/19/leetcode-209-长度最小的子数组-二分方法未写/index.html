@@ -22,7 +22,9 @@
 <meta name="keywords" content="leetcode,数组,双指针,中等,二分查找">
 
 
-<meta name="description" content>
+<meta name="description" content="题目描述给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的连续子数组。如果不存在符合条件的连续子数组，返回 0。
+示例: 
+输入: s = 7, nu...">
 
 
 <meta name="robots" content="all">
@@ -33,7 +35,7 @@
 
 <title>
     
-    209.长度最小的子数组-二分方法未写 |
+    leetcdoe.209.长度最小的子数组-二分方法未写 |
     
     Hexo
 </title>
@@ -145,9 +147,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="209.长度最小的子数组-二分方法未写">
+        <h1 id="leetcdoe.209.长度最小的子数组-二分方法未写">
             
-            209.长度最小的子数组-二分方法未写
+            leetcdoe.209.长度最小的子数组-二分方法未写
             
         </h1>
         <div class="post-meta">
@@ -187,7 +189,13 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的连续子数组。如果不存在符合条件的连续子数组，返回 0。</p>
+<p>示例: </p>
+<p>输入: s = 7, nums = [2,3,1,2,4,3]<br>输出: 2<br>解释: 子数组 [4,3] 是该条件下的长度最小的连续子数组。<br>进阶:</p>
+<p>如果你已经完成了O(n) 时间复杂度的解法, 请尝试 O(n log n) 时间复杂度的解法。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/minimum-size-subarray-sum" target="_blank" rel="noopener">https://leetcode-cn.com/problems/minimum-size-subarray-sum</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>标签 <strong>数组</strong> <strong>双指针</strong> <strong>二分查找</strong></p>
+<h3 id="解法一：双指针，滑动窗口"><a href="#解法一：双指针，滑动窗口" class="headerlink" title="解法一：双指针，滑动窗口"></a>解法一：双指针，滑动窗口</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">s</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> minSubArrayLen = <span class="function"><span class="keyword">function</span>(<span class="params">s, nums</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> left = <span class="number">0</span></span><br><span class="line">	<span class="keyword">let</span> right = <span class="number">-1</span> <span class="comment">// 滑动窗口 nums[left...right]</span></span><br><span class="line">	<span class="keyword">let</span> sum = <span class="number">0</span> <span class="comment">// 记录找到的最大值</span></span><br><span class="line">	<span class="keyword">let</span> res = nums.length + <span class="number">1</span> <span class="comment">// 记录连续数组的长度</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (left &lt; nums.length) &#123;</span><br><span class="line">		<span class="keyword">if</span> (right + <span class="number">1</span> &lt; nums.length &amp;&amp; sum &lt; s) &#123;</span><br><span class="line">			right++</span><br><span class="line">			sum += nums[right]</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      sum -= nums[left]</span><br><span class="line">      left++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (sum &gt;= s) &#123;</span><br><span class="line">			res = <span class="built_in">Math</span>.min(res, right - left + <span class="number">1</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (res === nums.length+<span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span> <span class="comment">// 没有找到答案返回0</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
     </div>
     
     <div class="post-footer">
@@ -205,17 +213,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2020/07/19/leetcode-219-存在重复元素II/" class="pre-post btn btn-default" title='219.存在重复元素II'>
+    <a href="/2020/07/19/leetcode-219-存在重复元素II/" class="pre-post btn btn-default" title='leetcode.219.存在重复元素II'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            219.存在重复元素II</span>
+            leetcode.219.存在重复元素II</span>
     </a>
     
     
-    <a href="/2020/07/19/leetcode-205-同构字符串/" class="next-post btn btn-default" title='205.同构字符串'>
+    <a href="/2020/07/19/leetcode-205-同构字符串/" class="next-post btn btn-default" title='leetcode.205.同构字符串'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            205.同构字符串</span><i class="fa fa-angle-right fa-fw"></i>
+            leetcode.205.同构字符串</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -245,7 +253,7 @@
             文章目录
         </h3>
         
-        <p>暂无目录</p>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解法一：双指针，滑动窗口"><span class="toc-text">解法一：双指针，滑动窗口</span></a></li></ol>
         
     </div>
 </aside>

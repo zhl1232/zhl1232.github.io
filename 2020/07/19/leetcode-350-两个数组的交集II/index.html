@@ -22,7 +22,9 @@
 <meta name="keywords" content="leetcode,双指针,简单,二分查找,哈希表,排序">
 
 
-<meta name="description" content>
+<meta name="description" content="题目描述给定两个数组，编写一个函数来计算它们的交集。
+示例 1:12输入: nums1 = [1,2,2,1], nums2 = [2,2]输出: [2,2]
+示例 2:12输入: nums1 ...">
 
 
 <meta name="robots" content="all">
@@ -33,7 +35,7 @@
 
 <title>
     
-    350.两个数组的交集II |
+    leetcode.350.两个数组的交集II |
     
     Hexo
 </title>
@@ -145,9 +147,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="350.两个数组的交集II">
+        <h1 id="leetcode.350.两个数组的交集II">
             
-            350.两个数组的交集II
+            leetcode.350.两个数组的交集II
             
         </h1>
         <div class="post-meta">
@@ -187,7 +189,58 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定两个数组，编写一个函数来计算它们的交集。</p>
+<p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: nums1 = [1,2,2,1], nums2 = [2,2]</span><br><span class="line">输出: [2,2]</span><br></pre></td></tr></table></figure></p>
+<p>示例 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: nums1 = [4,9,5], nums2 = [9,4,9,8,4]</span><br><span class="line">输出: [4,9]</span><br></pre></td></tr></table></figure></p>
+<p>说明：</p>
+<ul>
+<li>输出结果中每个元素出现的次数，应与元素在两个数组中出现的次数一致。</li>
+<li>我们可以不考虑输出结果的顺序。</li>
+</ul>
+<p>进阶:</p>
+<ul>
+<li>如果给定的数组已经排好序呢？你将如何优化你的算法？</li>
+<li>如果 nums1 的大小比 nums2 小很多，哪种方法更优？</li>
+<li>如果 nums2 的元素存储在磁盘上，磁盘内存是有限的，并且你不能一次加载所有的元素到内存中，你该怎么办？</li>
+</ul>
+<p>标签 <strong>排序</strong> <strong>哈希表</strong> <strong>双指针</strong> <strong>二分查找</strong></p>
+<p><a href="https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/</a></p>
+<h3 id="解法一：哈希表"><a href="#解法一：哈希表" class="headerlink" title="解法一：哈希表"></a>解法一：哈希表</h3><p>时间复杂度O(n)</p>
+<ol>
+<li><p>先用Hashmap记录第一个数组中的元素【放在key】，和出现的次数【放在value】。</p>
+</li>
+<li><p>然后再遍历第二个数组，如果找到对应元素，则添加这个元素到返回数组里。</p>
+</li>
+<li><p>如果value值大于1，HashMap中的value值减 1，表示已经找到一个相同的了。</p>
+</li>
+<li><p>如果value值等于1，则删除该元素。</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums1</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums2</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> intersect = <span class="function"><span class="keyword">function</span>(<span class="params">nums1, nums2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> hash = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">    <span class="keyword">let</span> res = []</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums1.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(hash.has(nums1[i])) &#123;</span><br><span class="line">            hash.set(nums1[i], hash.get(nums1[i]) + <span class="number">1</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           hash.set(nums1[i], <span class="number">1</span>) </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums2.length; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> temp = nums2[i]</span><br><span class="line">        <span class="keyword">let</span> hashKey = hash.get(temp)</span><br><span class="line">        <span class="keyword">if</span>(hash.has(temp)) &#123;</span><br><span class="line">            res.push(temp)</span><br><span class="line">            <span class="keyword">if</span>(hashKey &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                hash.set(temp, hashKey - <span class="number">1</span>)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                hash.delete(temp)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="解法二：双指针"><a href="#解法二：双指针" class="headerlink" title="解法二：双指针"></a>解法二：双指针</h3><ol>
+<li>两个数组排序</li>
+<li>设定两个为0的指针，比较两个指针的元素是否相等</li>
+<li>如果相等，元素push到返回值里，两个指针同时往前</li>
+<li>如果不相等，元素小的指针往前</li>
+</ol>
+<p>如果相等，那肯定比较过的元素就没用了，两个指针++</p>
+<p>如果不相等，那把元素小的数组指针++。</p>
+<p>因为大元素可能在小元素数组里存在，但是小元素在大元素所在数组肯定不存在。因为已经排过序了。</p>
+<p>进阶里的第一条，但这个也不确定是否算是优化。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums1</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums2</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> intersect = <span class="function"><span class="keyword">function</span>(<span class="params">nums1, nums2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> p1 = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> p2 = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> res = []</span><br><span class="line">    nums1 = nums1.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b)</span><br><span class="line">    nums2 = nums2.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b)</span><br><span class="line">    <span class="keyword">while</span>(p1 &lt; nums1.length &amp;&amp; p2 &lt; nums2.length) &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums1[p1] == nums2[p2]) &#123;</span><br><span class="line">            res.push(nums1[p1])</span><br><span class="line">            p1++</span><br><span class="line">            p2++</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(nums1[p1] &lt; nums2[p2]) &#123;</span><br><span class="line">            p1++</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            p2++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="解法三：暴力循环"><a href="#解法三：暴力循环" class="headerlink" title="解法三：暴力循环"></a>解法三：暴力循环</h3><p>时间复杂度O(n^2)</p>
+<ol>
+<li><p>遍历第一个数组，然后在第二个数组查找是否有当前元素。</p>
+</li>
+<li><p>如果有，把当前元素push进返回值。然后把第二个数组里该下标元素删除。</p>
+</li>
+</ol>
+<p>优化一下，可以遍历length短的那个数组，在length长的数组里查找。</p>
+<p>对应进阶第二条。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums1</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number[]&#125;</span> <span class="variable">nums2</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number[]&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> intersect = <span class="function"><span class="keyword">function</span>(<span class="params">nums1, nums2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res = [];</span><br><span class="line">    <span class="keyword">if</span> (nums1.length &lt; nums2.length) [nums1, nums2] = [nums2, nums1];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums1.length; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> key = nums2.indexOf(nums1[i]);</span><br><span class="line">        <span class="keyword">if</span> (key !== <span class="number">-1</span>) res.push(nums2.splice(key, <span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>进阶第三条，只给了nums2的条件，没有给nums1的。</p>
+<p>内存不够的话，只能一部分一部分的处理。但是是否已排序的条件也没给。</p>
+<p>标签里的二分查找也没有思路，有大佬有想法的可以留言。</p>
+
     </div>
     
     <div class="post-footer">
@@ -205,17 +258,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2020/07/19/leetcode-387-字符串中的第一个唯一字符/" class="pre-post btn btn-default" title='387.字符串中的第一个唯一字符'>
+    <a href="/2020/07/19/leetcode-387-字符串中的第一个唯一字符/" class="pre-post btn btn-default" title='leetcode.387.字符串中的第一个唯一字符'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            387.字符串中的第一个唯一字符</span>
+            leetcode.387.字符串中的第一个唯一字符</span>
     </a>
     
     
-    <a href="/2020/07/19/leetcode-349-两个数组的交集/" class="next-post btn btn-default" title='349.两个数组的交集'>
+    <a href="/2020/07/19/leetcode-349-两个数组的交集/" class="next-post btn btn-default" title='leetcode.349.两个数组的交集'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            349.两个数组的交集</span><i class="fa fa-angle-right fa-fw"></i>
+            leetcode.349.两个数组的交集</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -245,7 +298,7 @@
             文章目录
         </h3>
         
-        <p>暂无目录</p>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解法一：哈希表"><span class="toc-text">解法一：哈希表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解法二：双指针"><span class="toc-text">解法二：双指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解法三：暴力循环"><span class="toc-text">解法三：暴力循环</span></a></li></ol>
         
     </div>
 </aside>

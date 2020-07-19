@@ -22,7 +22,8 @@
 <meta name="keywords" content="leetcode,栈,简单,设计">
 
 
-<meta name="description" content>
+<meta name="description" content="
+题目描述设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈。1234push(x) -- 将元素 x 推入栈中。pop() -- 删除栈顶的元素。top() --...">
 
 
 <meta name="robots" content="all">
@@ -33,7 +34,7 @@
 
 <title>
     
-    155.最小栈 |
+    leetcode.155.最小栈 |
     
     Hexo
 </title>
@@ -145,9 +146,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="155.最小栈">
+        <h1 id="leetcode.155.最小栈">
             
-            155.最小栈
+            leetcode.155.最小栈
             
         </h1>
         <div class="post-meta">
@@ -187,7 +188,28 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <!--
+ * @File: 
+ * @Author: 张宏亮 - zhl@xiaoniren.cn
+ * @Date: 2019-08-18 15:46:12
+ * @LastEditors: 张宏亮<hongliang@yunshan.net>
+ * @LastEditTime: 2019-09-22 15:54:19
+ * @Description: file content
+ * @Versions: 1.0.0
+ -->
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push(x) -- 将元素 x 推入栈中。</span><br><span class="line">pop() -- 删除栈顶的元素。</span><br><span class="line">top() -- 获取栈顶元素。</span><br><span class="line">getMin() -- 检索栈中的最小元素。</span><br></pre></td></tr></table></figure></p>
+<p>示例:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MinStack minStack = <span class="keyword">new</span> MinStack();</span><br><span class="line">minStack.push(<span class="number">-2</span>);</span><br><span class="line">minStack.push(<span class="number">0</span>);</span><br><span class="line">minStack.push(<span class="number">-3</span>);</span><br><span class="line">minStack.getMin();   --&gt; 返回 <span class="number">-3.</span></span><br><span class="line">minStack.pop();</span><br><span class="line">minStack.top();      --&gt; 返回 <span class="number">0.</span></span><br><span class="line">minStack.getMin();   --&gt; 返回 <span class="number">-2.</span></span><br></pre></td></tr></table></figure></p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/min-stack" target="_blank" rel="noopener">https://leetcode-cn.com/problems/min-stack</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>标签 <strong>栈</strong> <strong>设计</strong></p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>push，pop，top 操作都是正常的栈操作。关键是在<strong>常数时间内</strong>检索到最小元素的栈。</p>
+<p>要在常数时间内检索，常规做法是以空间换时间，一般使用辅助栈解决。</p>
+<ol>
+<li>设一个临时栈</li>
+<li>数据入栈时，临时栈为空，必须放入新元素</li>
+<li>数据入栈时，临时栈不为空，要判断新元素是否小于等于临时栈顶。符合条件放入临时栈。</li>
+<li>数据出栈时，判断元素是否等于临时栈栈顶元素。符合条件临时栈栈顶出栈。</li>
+</ol>
+<h3 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a>解题方法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * initialize your data structure here.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> MinStack = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.stack = []</span><br><span class="line">    <span class="keyword">this</span>.tempStack = []</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">x</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;void&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">MinStack.prototype.push = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.stack.push(x)</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.tempStack.length) &#123;</span><br><span class="line">        <span class="keyword">this</span>.tempStack[<span class="keyword">this</span>.tempStack.length - <span class="number">1</span>] &lt; x ? <span class="string">''</span> : <span class="keyword">this</span>.tempStack.push(x)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.tempStack.push(x)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;void&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">MinStack.prototype.pop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> pop = <span class="keyword">this</span>.stack.pop()</span><br><span class="line">    <span class="keyword">if</span>(pop == <span class="keyword">this</span>.tempStack[<span class="keyword">this</span>.tempStack.length - <span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="keyword">this</span>.tempStack.pop()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">MinStack.prototype.top = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.stack[<span class="keyword">this</span>.stack.length - <span class="number">1</span>]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;number&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">MinStack.prototype.getMin = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.tempStack[<span class="keyword">this</span>.tempStack.length - <span class="number">1</span>]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * Your MinStack object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * var obj = new MinStack()</span></span><br><span class="line"><span class="comment"> * obj.push(x)</span></span><br><span class="line"><span class="comment"> * obj.pop()</span></span><br><span class="line"><span class="comment"> * var param_3 = obj.top()</span></span><br><span class="line"><span class="comment"> * var param_4 = obj.getMin()</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
     </div>
     
     <div class="post-footer">
@@ -205,10 +227,10 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2020/07/19/leetcode-167-两数之和II-输入有序数组/" class="pre-post btn btn-default" title='167.两数之和II-输入有序数组'>
+    <a href="/2020/07/19/leetcode-167-两数之和II-输入有序数组/" class="pre-post btn btn-default" title='leetcode.167.两数之和II-输入有序数组'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            167.两数之和II-输入有序数组</span>
+            leetcode.167.两数之和II-输入有序数组</span>
     </a>
     
     
@@ -245,7 +267,7 @@
             文章目录
         </h3>
         
-        <p>暂无目录</p>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解题方法"><span class="toc-text">解题方法</span></a></li></ol>
         
     </div>
 </aside>

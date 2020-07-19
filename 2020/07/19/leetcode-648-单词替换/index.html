@@ -22,7 +22,8 @@
 <meta name="keywords" content="leetcode,中等,哈希表,字典树">
 
 
-<meta name="description" content>
+<meta name="description" content="
+题目描述在英语中，我们有一个叫做 词根(root)的概念，它可以跟着其他一些词组成另一个较长的单词——我们称这个词为 继承词(successor)。例如，词根an，跟随着单词 other(其他...">
 
 
 <meta name="robots" content="all">
@@ -33,7 +34,7 @@
 
 <title>
     
-    648.单词替换 |
+    leetcode.648.单词替换 |
     
     Hexo
 </title>
@@ -145,9 +146,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="648.单词替换">
+        <h1 id="leetcode.648.单词替换">
             
-            648.单词替换
+            leetcode.648.单词替换
             
         </h1>
         <div class="post-meta">
@@ -187,7 +188,31 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <!--
+ * @File: 
+ * @Author: 张宏亮 - zhl@xiaoniren.cn
+ * @Date: 2019-08-09 23:03:47
+ * @LastEditors: 张宏亮<zhl@xiaoniren.cn>
+ * @LastEditTime: 2019-08-12 17:18:57
+ * @Description: file content
+ * @Versions: 1.0.0
+ -->
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>在英语中，我们有一个叫做 词根(root)的概念，它可以跟着其他一些词组成另一个较长的单词——我们称这个词为 继承词(successor)。例如，词根an，跟随着单词 other(其他)，可以形成新的单词 another(另一个)。</p>
+<p>现在，给定一个由许多词根组成的词典和一个句子。你需要将句子中的所有继承词用词根替换掉。如果继承词有许多可以形成它的词根，则用最短的词根替换它。</p>
+<p>你需要输出替换之后的句子。</p>
+<p>示例 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: dict(词典) = [&quot;cat&quot;, &quot;bat&quot;, &quot;rat&quot;]</span><br><span class="line">sentence(句子) = &quot;the cattle was rattled by the battery&quot;</span><br><span class="line">输出: &quot;the cat was rat by the bat&quot;</span><br></pre></td></tr></table></figure></p>
+<p>注:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入只包含小写字母。</span><br><span class="line">1 &lt;= 字典单词数 &lt;=1000</span><br><span class="line">1 &lt;=  句中词语数 &lt;= 1000</span><br><span class="line">1 &lt;= 词根长度 &lt;= 100</span><br><span class="line">1 &lt;= 句中词语长度 &lt;= 1000</span><br></pre></td></tr></table></figure></p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/replace-words" target="_blank" rel="noopener">https://leetcode-cn.com/problems/replace-words</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>标签 <strong>字典树</strong> <strong>哈希表</strong> </p>
+<h3 id="解法一：没啥意义的直接解法"><a href="#解法一：没啥意义的直接解法" class="headerlink" title="解法一：没啥意义的直接解法"></a>解法一：没啥意义的直接解法</h3><p>时间复杂度O(n^2)</p>
+<p>虽然没啥意义，不过结果看起来还不错。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">执行结果：通过 显示详情</span><br><span class="line">执行用时 : 168 ms, 在所有 JavaScript 提交中击败了 91.67% 的用户</span><br><span class="line">内存消耗 : 40.7 MB, 在所有 JavaScript 提交中击败了 100.00% 的用户</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string[]&#125;</span> <span class="variable">dict</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">sentence</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;string&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> replaceWords = <span class="function"><span class="keyword">function</span>(<span class="params">dict, sentence</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> words = sentence.split(<span class="string">' '</span>)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; words.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; dict.length; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(words[i].startsWith(dict[j]))&#123;</span><br><span class="line">                words[i] = dict[j]</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> words.join(<span class="string">' '</span>)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="解法二：字典树"><a href="#解法二：字典树" class="headerlink" title="解法二：字典树"></a>解法二：字典树</h3><p>开始用字母对应下标写的 children。</p>
+<p>后来看到标签为字典树和哈希表。。</p>
+<p>又改成哈希了。2333</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string[]&#125;</span> <span class="variable">dict</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;string&#125;</span> <span class="variable">sentence</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;string&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * Trie</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.root = <span class="keyword">new</span> TrieNode(<span class="literal">null</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  insertData(stringData) &#123;</span><br><span class="line">    <span class="keyword">this</span>.insert(stringData, <span class="keyword">this</span>.root)</span><br><span class="line">  &#125;</span><br><span class="line">  insert(stringData, node) &#123;</span><br><span class="line">    <span class="keyword">if</span> (stringData == <span class="string">''</span>) &#123;</span><br><span class="line">      node.done = <span class="literal">true</span></span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 题目里都是单词，只有26个字母。用字母的 ASCII 码减 a 的 ASCII 码正好对应0-25</span></span><br><span class="line">    <span class="comment">// const index = stringData[0].charCodeAt(0) - 'a'.charCodeAt(0)</span></span><br><span class="line">    <span class="keyword">let</span> haveData = node.children.get(stringData[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (haveData) &#123;</span><br><span class="line">      <span class="keyword">this</span>.insert(stringData.substring(<span class="number">1</span>), haveData)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> newNode = <span class="keyword">new</span> TrieNode(stringData[<span class="number">0</span>])</span><br><span class="line">      <span class="comment">// node.children[index] = newNode</span></span><br><span class="line">      node.children.set(stringData[<span class="number">0</span>], newNode)</span><br><span class="line">      <span class="keyword">this</span>.insert(stringData.substring(<span class="number">1</span>), newNode)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  search(stringData) &#123;</span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">this</span>.root</span><br><span class="line">    <span class="keyword">let</span> res = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; stringData.length; i++) &#123;</span><br><span class="line">      <span class="comment">// cattle</span></span><br><span class="line">      <span class="keyword">const</span> element = stringData[i]</span><br><span class="line">      <span class="comment">// const index = element.charCodeAt(0) - 'a'.charCodeAt(0)</span></span><br><span class="line">      <span class="keyword">const</span> target = node.children.get(element)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (node.done) &#123;</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (target) &#123;</span><br><span class="line">        res += target.key</span><br><span class="line">        node = target</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        res = <span class="string">''</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 节点</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param <span class="type">&#123;*&#125;</span> <span class="variable">key</span></span></span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(key) &#123;</span><br><span class="line">    <span class="keyword">this</span>.key = key <span class="comment">// 节点字符</span></span><br><span class="line">    <span class="keyword">this</span>.children = <span class="keyword">new</span> <span class="built_in">Map</span>() <span class="comment">// 子节点集合</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> replaceWords = <span class="function"><span class="keyword">function</span>(<span class="params">dict, sentence</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> trie = <span class="keyword">new</span> Trie();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; dict.length; i++) &#123;</span><br><span class="line">          trie.insertData(dict[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> sentence.split(<span class="string">' '</span>).map(<span class="function"><span class="params">wrod</span> =&gt;</span> trie.search(wrod) || wrod).join(<span class="string">' '</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>字典树资料</p>
+
     </div>
     
     <div class="post-footer">
@@ -205,17 +230,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2020/07/19/leetcode-705-设计哈希集合/" class="pre-post btn btn-default" title='705.设计哈希集合'>
+    <a href="/2020/07/19/leetcode-705-设计哈希集合/" class="pre-post btn btn-default" title='leetcode.705.设计哈希集合'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            705.设计哈希集合</span>
+            leetcode.705.设计哈希集合</span>
     </a>
     
     
-    <a href="/2020/07/19/leetcode-599-两个列表的最小索引总和/" class="next-post btn btn-default" title='599.两个列表的最小索引总和'>
+    <a href="/2020/07/19/leetcode-599-两个列表的最小索引总和/" class="next-post btn btn-default" title='leetcode.599.两个列表的最小索引总和'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            599.两个列表的最小索引总和</span><i class="fa fa-angle-right fa-fw"></i>
+            leetcode.599.两个列表的最小索引总和</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -245,7 +270,7 @@
             文章目录
         </h3>
         
-        <p>暂无目录</p>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解法一：没啥意义的直接解法"><span class="toc-text">解法一：没啥意义的直接解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解法二：字典树"><span class="toc-text">解法二：字典树</span></a></li></ol>
         
     </div>
 </aside>

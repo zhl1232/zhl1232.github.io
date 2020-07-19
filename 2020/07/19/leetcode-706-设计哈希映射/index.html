@@ -22,7 +22,11 @@
 <meta name="keywords" content="leetcode,简单,设计,哈希表">
 
 
-<meta name="description" content>
+<meta name="description" content="题目描述不使用任何内建的哈希表库设计一个哈希集合
+具体地说，你的设计应该包含以下的功能
+
+add(value)：向哈希集合中插入一个值。
+contains(value) ：返回哈希集合中是否存在...">
 
 
 <meta name="robots" content="all">
@@ -33,7 +37,7 @@
 
 <title>
     
-    706.设计哈希映射 |
+    leetcode.706.设计哈希映射 |
     
     Hexo
 </title>
@@ -145,9 +149,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="706.设计哈希映射">
+        <h1 id="leetcode.706.设计哈希映射">
             
-            706.设计哈希映射
+            leetcode.706.设计哈希映射
             
         </h1>
         <div class="post-meta">
@@ -187,7 +191,25 @@
     </div>
     
     <div class="post-body post-content">
-        
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>不使用任何内建的哈希表库设计一个哈希集合</p>
+<p>具体地说，你的设计应该包含以下的功能</p>
+<ul>
+<li>add(value)：向哈希集合中插入一个值。</li>
+<li>contains(value) ：返回哈希集合中是否存在这个值。</li>
+<li>emove(value)：将给定值从哈希集合中删除。如果哈希集合中没有这个值，什么也不做。</li>
+</ul>
+<p>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">MyHashSet hashSet = new MyHashSet();</span><br><span class="line">hashSet.add(1);         </span><br><span class="line">hashSet.add(2);         </span><br><span class="line">hashSet.contains(1);    // 返回 true</span><br><span class="line">hashSet.contains(3);    // 返回 false (未找到)</span><br><span class="line">hashSet.add(2);          </span><br><span class="line">hashSet.contains(2);    // 返回 true</span><br><span class="line">hashSet.remove(2);          </span><br><span class="line">hashSet.contains(2);    // 返回  false (已经被删除)</span><br></pre></td></tr></table></figure></p>
+<p>注意：</p>
+<ul>
+<li>所有的值都在 [1, 1000000]的范围内。</li>
+<li>操作的总数目在[1, 10000]范围内。</li>
+<li>不要使用内建的哈希集合库。</li>
+</ul>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/design-hashset" target="_blank" rel="noopener">https://leetcode-cn.com/problems/design-hashset</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>标签 <strong>设计</strong> <strong>哈希表</strong></p>
+<p>js的对象本来就是哈希结构，而且也没涉及哈希函数的处理，没啥说的。。。</p>
+<p>哈希函数的处理和封装，占坑，后补。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Initialize your data structure here.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> MyHashSet = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.hash = &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">key</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;void&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">MyHashSet.prototype.add = <span class="function"><span class="keyword">function</span>(<span class="params">key</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.hash[key] = key</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">key</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;void&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">MyHashSet.prototype.remove = <span class="function"><span class="keyword">function</span>(<span class="params">key</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">delete</span> <span class="keyword">this</span>.hash[key]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns true if this set contains the specified element </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;number&#125;</span> <span class="variable">key</span></span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return <span class="type">&#123;boolean&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">MyHashSet.prototype.contains = <span class="function"><span class="keyword">function</span>(<span class="params">key</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span>.hash[key] != <span class="literal">null</span>)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * Your MyHashSet object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * var obj = new MyHashSet()</span></span><br><span class="line"><span class="comment"> * obj.add(key)</span></span><br><span class="line"><span class="comment"> * obj.remove(key)</span></span><br><span class="line"><span class="comment"> * var param_3 = obj.contains(key)</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
     </div>
     
     <div class="post-footer">
@@ -205,17 +227,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2020/07/19/leetcode-739-每日温度/" class="pre-post btn btn-default" title='739.每日温度'>
+    <a href="/2020/07/19/leetcode-739-每日温度/" class="pre-post btn btn-default" title='leetcode.739.每日温度'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            739.每日温度</span>
+            leetcode.739.每日温度</span>
     </a>
     
     
-    <a href="/2020/07/19/leetcode-705-设计哈希集合/" class="next-post btn btn-default" title='705.设计哈希集合'>
+    <a href="/2020/07/19/leetcode-705-设计哈希集合/" class="next-post btn btn-default" title='leetcode.705.设计哈希集合'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            705.设计哈希集合</span><i class="fa fa-angle-right fa-fw"></i>
+            leetcode.705.设计哈希集合</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -245,7 +267,7 @@
             文章目录
         </h3>
         
-        <p>暂无目录</p>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li></ol>
         
     </div>
 </aside>
