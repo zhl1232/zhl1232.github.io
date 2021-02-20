@@ -87,7 +87,7 @@
         var html = '';
         if (data.length) {
             html = data.map(function(post) {
-                console.log(post.path);
+                console.log(post);
                 return tpl(searchTpl, {
                     title: filter(post.title, 'title'),
                     path: post.path,
