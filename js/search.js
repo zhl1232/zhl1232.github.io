@@ -125,8 +125,10 @@
         var regExp = new RegExp(key.replace(/[ ]/g, '|'), 'gmi');
         loadData(function(data) {
             var result = data.filter(function(post) {
+                console.log(post);
                 return matcher(post, regExp);
             });
+            console.log(result);
             render(result);
         });
         e.preventDefault();
