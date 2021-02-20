@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2021-02-20T10:39:08.932Z</updated>
+  <updated>2021-02-20T10:44:32.617Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,19 +21,20 @@
     <link href="http://yoursite.com/2021/02/20/test/index/"/>
     <id>http://yoursite.com/2021/02/20/test/index/</id>
     <published>2021-02-20T10:38:06.067Z</published>
-    <updated>2021-02-20T10:39:08.932Z</updated>
+    <updated>2021-02-20T10:44:32.617Z</updated>
     
-    <content type="html"><![CDATA[<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.9.0">  <meta charset="UTF-8">  <meta http-equiv="X-UA-Compatible" content="IE=edge">  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Document</title></head><body>  测试<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/haru01.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body></html>]]></content>
+    <content type="html"><![CDATA[<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0">    <meta charset="utf-8">    <title>ECharts</title>    <!-- 引入 echarts.js -->    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.0.1/echarts.common.min.js"></script></head><body>    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->    <div id="main" style="width: 600px;height:400px;"></div>    <script type="text/javascript">        // 基于准备好的dom，初始化echarts实例        var myChart = echarts.init(document.getElementById('main'));        // 指定图表的配置项和数据        var option = {            title: {                text: 'ECharts 入门示例'            },            tooltip: {},            legend: {                data:['销量']            },            xAxis: {                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]            },            yAxis: {},            series: [{                name: '销量',                type: 'bar',                data: [5, 20, 36, 10, 10, 20]            }]        };        // 使用刚指定的配置项和数据显示图表。        myChart.setOption(option);    </script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/haru01.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body></html>]]></content>
     
     <summary type="html">
     
       
       
         &lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
+&lt;html&gt;
 &lt;head&gt;&lt;meta name=&quot;generator&quot; content=&quot;Hexo 3.9.0&quot;&gt;
-  &lt;meta charset=&quot;UTF-8&quot;&gt;
-  &lt;meta http-equiv=&quot;X-UA-Compat
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;ECharts&lt;/title&gt;
+    &lt;!-- 引入 
       
     
     </summary>
